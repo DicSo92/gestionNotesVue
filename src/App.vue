@@ -9,12 +9,16 @@
 </template>
 
 <style lang="scss">
+  body {
+    height: 100vh;
+  }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100%;
 }
 
 #nav {
@@ -29,4 +33,14 @@
     }
   }
 }
+  section {
+    height: 85%;
+  }
+  textarea:first-line {
+    font-weight: bold;
+    line-height: 3;
+  }
+  .polygonBtn {
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+  }
 </style>
