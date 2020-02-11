@@ -43,4 +43,31 @@
   .polygonBtn {
     clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
   }
+  .popper {
+    padding: 4px 10px !important;
+    box-shadow: rgb(58, 58, 58) 0 0 3px 0 !important;
+    border: 0 !important;
+    background-color: white !important;
+  }
+  #notesBloc {
+    height: 600px;
+    overflow-y: auto;
+  }
+  /* width */
+  #notesBloc::-webkit-scrollbar {
+    width: 8px;
+    margin: 2px 4px;
+  }
+
+  /* Track */
+  #notesBloc::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px grey;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  #notesBloc::-webkit-scrollbar-thumb {
+    background: #888888;
+    border-radius: 10px;
+  }
 </style>

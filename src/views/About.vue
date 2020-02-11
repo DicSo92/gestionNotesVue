@@ -1,5 +1,10 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div class="abou flex justify-center">
+    <div class="w-4/6 mt-24">
+      <h1 class="mb-16 text-lg font-bold">Cupcake ipsum dolor sit amet gingerbread</h1>
+      <h3 class="mb-4 f">Cupcake ipsum dolor sit amet gingerbread halvah sweet roll brownie. Soufflé bonbon I love tart tootsie roll lemon drops I love gummies. I love cookie gummi bears biscuit biscuit sweet roll. Chupa chups I love tootsie roll oat cake chupa chups. Chocolate sweet topping tart caramels pudding I love chocolate cake. Donut cupcake chupa chups candy tart I love fruitcake caramels. Cookie soufflé I love cupcake dragée tart tootsie roll I love cupcake. I love tootsie roll jelly beans dragée candy canes. Toffee lemon drops dragée I love dragée donut. Cotton candy gingerbread caramels croissant wafer toffee liquorice gingerbread tootsie roll. Tiramisu marzipan chupa chups cupcake candy canes lollipop bear claw tart. Macaroon muffin chocolate.</h3>
+      <h3 class="mb-4">Jelly-o marzipan sugar plum tootsie roll chupa chups brownie cotton candy. Jelly danish cupcake ice cream soufflé jelly. Cookie cotton candy chocolate cake apple pie macaroon. Cheesecake pie carrot cake sesame snaps tootsie roll carrot cake pudding pudding cake. Sweet roll cake wafer liquorice candy wafer tootsie roll jelly-o. Chocolate cake jelly-o I love macaroon candy canes. Gummi bears caramels carrot cake I love. Danish chupa chups sugar plum. Jujubes jelly beans croissant tart tart. Jelly beans sweet chocolate cake. Icing bonbon wafer. Cookie topping brownie cupcake powder biscuit. Bonbon topping carrot cake icing wafer cookie tiramisu tart ice cream. Candy chupa chups jujubes pie wafer sweet cheesecake.</h3>
+      <h3 class="mb-4">Sweet croissant I love I love pudding. Gummi bears cake I love I love toffee toffee I love I love. Fruitcake biscuit donut jelly-o I love pie sweet roll. I love sweet roll pie bonbon sweet I love I love. Biscuit sugar plum gummies. Apple pie apple pie dragée muffin cupcake I love marzipan cheesecake sesame snaps. Sesame snaps macaroon sugar plum gummies toffee danish chocolate cake chocolate jelly beans. Croissant I love I love I love apple pie caramels. Dessert wafer lollipop lollipop cheesecake. Icing I love I love jelly beans powder danish sweet lollipop I love. Sweet toffee topping fruitcake marshmallow. Soufflé icing tootsie roll.</h3>
+    </div>
   </div>
 </template>

@@ -14,35 +14,69 @@
                 <input class="shadow appearance-none w-full border rounded py-1 px-2 text-gray-700 leading-tight"
                        id="search" type="text"
                        placeholder="Search...">
-                <font-awesome-icon
-                        :icon="['fas', 'notes-medical']"
-                        size="2x"
-                        v-on:click="btnAddNote"
-                        class="cursor-pointer text-blue-500 ml-4"
-                />
+                <popper trigger="hover" :options="{placement: 'bottom'}">
+                    <div class="popper">
+                        Ajouter une note
+                    </div>
+                    <font-awesome-icon
+                            slot="reference"
+                            :icon="['fas', 'notes-medical']"
+                            size="2x"
+                            v-on:click="btnAddNote"
+                            class="cursor-pointer mx-2 text-blue-500"
+                    />
+                </popper>
             </div>
             <div class="w-6/12 flex items-center justify-end px-6">
-                <font-awesome-icon
-                        :icon="['fas', 'history']"
-                        size="lg"
-                        class="cursor-pointer text-blue-500 ml-4"
-                />
-                <font-awesome-icon
-                        :icon="['far', 'share-square']"
-                        size="lg"
-                        class="cursor-pointer text-blue-500 ml-4"
-                />
-                <font-awesome-icon
-                        :icon="['far', 'trash-alt']"
-                        size="lg"
-                        class="cursor-pointer text-blue-500 ml-4"
-                        v-on:click="removeNote(selectedNote)"
-                />
-                <font-awesome-icon
-                        :icon="['fas', 'info-circle']"
-                        size="lg"
-                        class="cursor-pointer text-blue-500 ml-4"
-                />
+                <popper trigger="hover" :options="{placement: 'bottom'}">
+                    <div class="popper">
+                        Précédent
+                    </div>
+
+                    <font-awesome-icon
+                            slot="reference"
+                            :icon="['fas', 'history']"
+                            size="lg"
+                            class="cursor-pointer text-blue-500 ml-4"
+                    />
+                </popper>
+                <popper trigger="hover" :options="{placement: 'bottom'}">
+                    <div class="popper">
+                        Partager
+                    </div>
+
+                    <font-awesome-icon
+                            slot="reference"
+                            :icon="['far', 'share-square']"
+                            size="lg"
+                            class="cursor-pointer text-blue-500 ml-4"
+                    />
+                </popper>
+                <popper trigger="hover" :options="{placement: 'bottom'}">
+                    <div class="popper">
+                        Supprimer
+                    </div>
+
+                    <font-awesome-icon
+                            slot="reference"
+                            :icon="['far', 'trash-alt']"
+                            size="lg"
+                            class="cursor-pointer text-blue-500 ml-4"
+                            v-on:click="removeNote(selectedNote)"
+                    />
+                </popper>
+                <popper trigger="hover" :options="{placement: 'bottom'}">
+                    <div class="popper">
+                        Informations
+                    </div>
+
+                    <font-awesome-icon
+                            slot="reference"
+                            :icon="['fas', 'info-circle']"
+                            size="lg"
+                            class="cursor-pointer text-blue-500 ml-4"
+                    />
+                </popper>
             </div>
         </div>
         <!------------------------------------------------------------------------------------------------------------->
@@ -82,25 +116,27 @@
             </div>
           </div>
           <!----------------------------------------------------------------------------------------------------------->
-          <div class="border-r border-gray-200 w-4/12 py-4 px-6 flex flex-col-reverse justify-end overflow-auto">
-            <div v-for="(item, index) in notes"
-                 class="text-left py-4 cursor-pointer"
-                 v-on:click="noteSelect(item, index)">
-              <h2 class="font-bold mb-2 text-lg" v-bind:class="{ 'text-blue-400': (selectedNote === index) }">{{item.title}}</h2>
-              <h3 class="text-gray-500" v-bind:class="{ 'text-blue-300': (selectedNote === index) }">{{item.content}}</h3>
-            </div>
+          <div class="border-r border-gray-200 w-4/12 py-4 px-6" id="notesBloc">
+              <div class="flex flex-col-reverse">
+                  <div v-for="(item, index) in notes"
+                       class="text-left py-4 cursor-pointer"
+                       v-on:click="noteSelect(item, index)">
+                      <h2 class="font-bold mb-2 text-lg" v-bind:class="{ 'text-blue-400': (selectedNote === index) }">{{item.title}}</h2>
+                      <h3 class="text-gray-500" v-bind:class="{ 'text-blue-300': (selectedNote === index) }">{{item.content}}</h3>
+                  </div>
+              </div>
           </div>
           <!----------------------------------------------------------------------------------------------------------->
-          <div class="w-6/12 paddingContent relative">
+          <div class="w-6/12 paddingContent relative" id="textareaBloc">
             <textarea name="area" id="textarea"
                   class="w-full h-full resize-none py-4 px-6 text-xl"
                   v-model="noteEdit" v-on:blur="blurTextarea">
             </textarea>
 <!--             <button v-on:click="submitNote"-->
              <button class="polygonBtn bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-24 border-b-4 border-l-4 border-blue-700 hover:border-blue-500 absolute bottom-0 right-0">
-                 Confirm
+                 Confirmer
               </button>
-              <p class="absolute bottom-0 left-0"> {{nbCaract}} / 800</p>
+              <p class="absolute bottom-0 left-0 ml-3 mb-2"> {{nbCaract}} / 800</p>
           </div>
         </div>
     </div>
@@ -108,8 +144,12 @@
 </template>
 
 <script>
+    import Popper from 'vue-popperjs';
+    import 'vue-popperjs/dist/vue-popper.css';
   export default {
-    components: {},
+      components: {
+          'popper': Popper
+      },
     data () {
       return {
           notes: [],
@@ -128,6 +168,9 @@
           }
       },
     mounted() {
+        document.getElementById('notesBloc').style.height = document.getElementById('textareaBloc').clientHeight + 'px'
+        document.getElementById('notesBloc').scrollTop = 0
+
       if(localStorage.getItem('notes')) {
           try {
               this.notes = JSON.parse(localStorage.getItem('notes'));
@@ -137,18 +180,22 @@
       }
     },
     watch: {
-        newNote: function (val) {
-            if (val) {
-                document.getElementById('textarea').focus()
-            }
-        },
+        // newNote: function (val) {
+        //     if (val) {
+        //         document.getElementById('textarea').focus()
+        //     }
+        // },
         noteEdit: function (val) {
-            if (this.selectedNote) {
+            // if (this.selectedNote) {
+            //     this.notes[this.selectedNote].title = val.split('\n')[0]
+            //     this.notes[this.selectedNote].content = val.split('\n').length <= 1 ? '' : val.substring(val.indexOf('\n')+1)
+            // } else if (val && this.newNote && val.length >= 1) {
+            //     this.notes[this.notes.length - 1].title = val.split('\n')[0]
+            //     this.notes[this.notes.length - 1].content = val.split('\n').length <= 1 ? '' : val.substring(val.indexOf('\n')+1)
+            // }
+            if (val && val.length >= 1) {
                 this.notes[this.selectedNote].title = val.split('\n')[0]
                 this.notes[this.selectedNote].content = val.split('\n').length <= 1 ? '' : val.substring(val.indexOf('\n')+1)
-            } else if (val && this.newNote && val.length >= 1) {
-                this.notes[this.notes.length - 1].title = val.split('\n')[0]
-                this.notes[this.notes.length - 1].content = val.split('\n').length <= 1 ? '' : val.substring(val.indexOf('\n')+1)
             }
             this.saveNote()
         }
@@ -164,20 +211,24 @@
             }
         },
         btnAddNote () {
-            if (!this.newNote) {
-                this.noteEdit  = null
-                this.newNote = true
-                this.selectedNote = false
-                this.notes.push({
-                    title: '',
-                    content: ''
-                })
+            if (this.newNote && this.noteEdit === null) {
+                return
             }
+            this.noteEdit  = null
+            this.newNote = true
+            this.notes.push({
+                title: '',
+                content: ''
+            })
+            this.selectedNote = this.notes.length - 1
+            document.getElementById('textarea').focus()
+            // document.getElementById('notesBloc').scrollTop = 0
         },
         noteSelect (item, index) {
             this.newNote = false
             this.selectedNote = index
             this.noteEdit = item.title + '\n' + item.content
+            document.getElementById('textarea').focus()
         },
         // submitNote () {
         //     if (this.newNote) { // Si ajout note
